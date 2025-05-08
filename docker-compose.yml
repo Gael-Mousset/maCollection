@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - 5000:5000
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/games
+    depends_on:
+      - mongo
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+volumes:
+  mongo_data:
+networks:
+  app-network:
+  nginx-proxy-manager_default:
+    external: true
