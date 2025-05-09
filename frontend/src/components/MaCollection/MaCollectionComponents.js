@@ -13,9 +13,12 @@ const MyCollection = () => {
   useEffect(() => {
     const fetchCollection = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/games", {
-          params: { platform },
-        });
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/games`,
+          {
+            params: { platform },
+          }
+        );
         const sortedGames = response.data.sort((a, b) =>
           a.game_title.localeCompare(b.game_title)
         );
@@ -35,7 +38,7 @@ const MyCollection = () => {
   const fetchDuplicates = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/games/duplicates"
+        `${process.env.REACT_APP_API_URL}/api/games/duplicates`
       );
       setDuplicates(response.data);
     } catch (error) {
@@ -50,7 +53,7 @@ const MyCollection = () => {
   const removeFromCollection = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/games/${id}`
+        `${process.env.REACT_APP_API_URL}/api/games/${id}`
       );
       if (response.data.game) {
         setCollection(

@@ -12,12 +12,15 @@ const SearchComponent = ({ addToCollection }) => {
   const searchGames = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`http://localhost:5000/proxy`, {
-        params: {
-          name: query,
-          platform: platform,
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/proxy`,
+        {
+          params: {
+            name: query,
+            platform: platform,
+          },
+        }
+      );
       setGames(response.data.data.games);
     } catch (error) {
       console.error("Erreur lors de la recherche des jeux :", error);
@@ -28,7 +31,7 @@ const SearchComponent = ({ addToCollection }) => {
   const addToDatabase = async (game) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/games",
+        `${process.env.REACT_APP_API_URL}/api/games`,
         game
       );
       addToCollection(response.data);
