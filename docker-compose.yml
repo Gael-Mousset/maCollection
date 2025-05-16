@@ -5,10 +5,10 @@ services:
     image: mongo:latest
     container_name: mongo
     restart: always
-    ports:
-      - 27017:27017
     volumes:
       - mongo_data:/data/db
+    networks:
+      - app-network
 
   backend:
     build: ./backend
@@ -20,19 +20,25 @@ services:
       - MONGODB_URI=mongodb://mongo:27017/games
     depends_on:
       - mongo
+    networks:
+      - app-network
+
   frontend:
     build: ./frontend
     container_name: frontend
     restart: always
+    environment:
+      - REACT_APP_API_URL=http://macollectionjv.duckdns.org:5000
     ports:
       - 8080:80
-    environment:
-      - REACT_APP_API_URL=http://backend:5000
     depends_on:
       - backend
+    networks:
+      - app-network
 volumes:
   mongo_data:
+
 networks:
   app-network:
-  nginx-proxy-manager_default:
-    external: true
+  # nginx-proxy-manager_default:
+  #   external: true
