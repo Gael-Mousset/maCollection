@@ -3,6 +3,10 @@ FROM node:20 AS build
 WORKDIR /app
 
 COPY package*.json ./
+
+ARG MONGO_URI
+ENV MONGO_URI=$MONGO_URI
+
 RUN npm install
 
 COPY . .
