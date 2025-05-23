@@ -38,10 +38,11 @@ services:
       - backend
     networks:
       - app-network
+      - nginx-proxy-manager_default
 volumes:
   mongo_data:
 
 networks:
   app-network:
-  # nginx-proxy-manager_default:
-  #   external: true
+  nginx-proxy-manager_default:
+    external: true
