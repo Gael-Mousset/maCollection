@@ -24,6 +24,7 @@ services:
       - mongo
     networks:
       - app-network
+      - nginx-proxy-manager_default
 
   frontend:
     build:
