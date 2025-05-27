@@ -30,7 +30,7 @@ services:
     build:
       context: ./frontend
       args:
-        REACT_APP_API_URL: https://macollectionjv.duckdns.org/api
+        REACT_APP_API_URL: https://macollectionjv.duckdns.org
     container_name: frontend
     restart: always
     ports:
