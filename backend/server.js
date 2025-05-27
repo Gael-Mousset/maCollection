@@ -30,7 +30,7 @@ const games = require("./routes/games");
 
 app.use("/api/games", games);
 
-app.get("/proxy", async (req, res) => {
+app.get("/api/proxy", async (req, res) => {
   const name = req.query.name;
   const apiKey =
     "e2632452c70b87623a7abd8f06273b80f723db6158242bebb380284efa6a251c"; // Ideally, use process.env for keys
