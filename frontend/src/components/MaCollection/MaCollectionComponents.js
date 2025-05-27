@@ -14,7 +14,7 @@ const MyCollection = () => {
     const fetchCollection = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/games`,
+          `${process.env.REACT_APP_API_URL}/games`,
           {
             params: { platform },
           }
@@ -38,7 +38,7 @@ const MyCollection = () => {
   const fetchDuplicates = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/games/duplicates`
+        `${process.env.REACT_APP_API_URL}/games/duplicates`
       );
       setDuplicates(response.data);
     } catch (error) {
@@ -53,7 +53,7 @@ const MyCollection = () => {
   const removeFromCollection = async (id) => {
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/games/${id}`
+        `${process.env.REACT_APP_API_URL}/games/${id}`
       );
       if (response.data.game) {
         setCollection(

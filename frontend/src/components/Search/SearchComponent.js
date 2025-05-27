@@ -31,7 +31,7 @@ const SearchComponent = ({ addToCollection }) => {
   const addToDatabase = async (game) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/games`,
+        `${process.env.REACT_APP_API_URL}/games`,
         game
       );
       addToCollection(response.data);
